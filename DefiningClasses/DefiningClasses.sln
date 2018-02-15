@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DefineAClassPerson", "DefineAClassPerson\DefineAClassPerson.csproj", "{D6CD6EA8-BA4C-428F-B6CC-526C460C2701}"
 EndProject
@@ -25,7 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarSalesman", "CarSalesman\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonTrainer", "PokemonTrainer\PokemonTrainer.csproj", "{D5D07DE4-469C-4E82-89DC-077BC90D00F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google", "Google\Google.csproj", "{8F018807-7646-41CF-854B-42251A4935B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Google", "Google\Google.csproj", "{8F018807-7646-41CF-854B-42251A4935B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyTree", "FamilyTree\FamilyTree.csproj", "{D505CE60-C451-48AE-9685-B27C8125CA8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatLady", "CatLady\CatLady.csproj", "{082E61B5-D874-4E39-B22F-0587AE7BBAAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +85,14 @@ Global
 		{8F018807-7646-41CF-854B-42251A4935B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F018807-7646-41CF-854B-42251A4935B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F018807-7646-41CF-854B-42251A4935B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D505CE60-C451-48AE-9685-B27C8125CA8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D505CE60-C451-48AE-9685-B27C8125CA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D505CE60-C451-48AE-9685-B27C8125CA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D505CE60-C451-48AE-9685-B27C8125CA8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{082E61B5-D874-4E39-B22F-0587AE7BBAAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{082E61B5-D874-4E39-B22F-0587AE7BBAAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{082E61B5-D874-4E39-B22F-0587AE7BBAAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{082E61B5-D874-4E39-B22F-0587AE7BBAAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
