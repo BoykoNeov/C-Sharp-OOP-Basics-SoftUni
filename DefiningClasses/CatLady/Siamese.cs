@@ -11,9 +11,9 @@
     {
     }
 
-    public Siamese(string name, int earSize) : this(name)
+    public Siamese(string name, string earSize) : this(name)
     {
-        this.EarSize = earSize;
+        this.EarSize = int.Parse(earSize);
     }
 
     public override string ToString()
