@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 public class StartUp
 {
@@ -8,10 +9,23 @@ public class StartUp
         double width = double.Parse(Console.ReadLine());
         double height = double.Parse(Console.ReadLine());
 
-        Box box = new Box(length, width, height);
+        StringBuilder sb = new StringBuilder();
 
-        Console.WriteLine($"Surface Area - {box.GetSurfaceArea():F2}");
-        Console.WriteLine($"Lateral Surface Area - {box.GetLateralSurfaceArea():F2}");
-        Console.WriteLine($"Volume - {box.GetVolume():F2}");
+        try
+        {
+            Box box = new Box(length, width, height);
+
+            sb.AppendLine($"Surface Area - {box.GetSurfaceArea():F2}");
+            sb.AppendLine($"Lateral Surface Area - {box.GetLateralSurfaceArea():F2}");
+            sb.AppendLine($"Volume - {box.GetVolume():F2}");
+        }
+        catch(Exception e)
+        {
+            sb.AppendLine(e.Message);
+        }
+        finally
+        {
+            Console.WriteLine(sb.ToString());
+        }
     }
 }
