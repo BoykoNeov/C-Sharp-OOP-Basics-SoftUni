@@ -1,4 +1,4 @@
-﻿public class Honeycake : Food
+﻿public class HoneyCake : Food
 {
     public override int Happiness { get => 5; }
 }

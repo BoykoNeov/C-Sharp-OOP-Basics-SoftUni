@@ -4,27 +4,27 @@ using System.Linq;
 
 public static class FoodFactory
 {
-    private static HashSet<string> validFoods;
+    private static Dictionary<string, string> validFoodsLowerCase;
 
     static FoodFactory()
     {
-        validFoods = typeof(Food)
+        validFoodsLowerCase = typeof(Food)
         .Assembly.GetTypes()
-        .Where(t => t.IsSubclassOf(typeof(Food)) && !t.IsAbstract).Select(t => t.Name).ToHashSet();
+        .Where(t => t.IsSubclassOf(typeof(Food)) && !t.IsAbstract).Select(t => t.Name).ToDictionary(t => t.ToLower(), t => t);
     }
 
     public static IReadOnlyCollection<string> ValidFoods
     {
-        get => validFoods;
+        get => validFoodsLowerCase.Values;
     }
 
     public static Food CreateFood(string foodName)
     {
         Food newFood = null;
 
-        if (validFoods.Contains(foodName))
+        if (validFoodsLowerCase.ContainsKey(foodName.ToLower()))
         {
-            newFood = Activator.CreateInstance(Type.GetType(foodName)) as Food;
+            newFood = Activator.CreateInstance(Type.GetType(validFoodsLowerCase[foodName.ToLower()])) as Food;
         }
         else
         {
