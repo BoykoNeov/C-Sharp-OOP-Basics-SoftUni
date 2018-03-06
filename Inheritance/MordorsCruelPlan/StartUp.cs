@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-class StartUp
+public class StartUp
 {
-    static void Main()
+    public static void Main()
     {
-        
         // Split by whitespace
         string[] foodNames = Console.ReadLine().Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
 
