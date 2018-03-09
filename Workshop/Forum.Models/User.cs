@@ -18,6 +18,14 @@
             this.PostIds = postIds.ToList();
         }
 
+        public User(int id, string name, string password)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Password = password;
+            this.PostIds = new List<int>();
+        }
+
         public ICollection<int> PostIds
         {
             get { return postIds; }
