@@ -113,7 +113,17 @@
                 int id = int.Parse(args[0]);
                 string name = args[1];
                 string password = args[2];
-                int[] postIds = args[3].Split(',', System.StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+                List<int> postIds = new List<int>();
+
+                if (args.Length > 3)
+                {
+                    postIds = args[3].Split(',', System.StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+                }
+                else
+                {
+                    password = password.TrimEnd(',');
+                }
+
                 User user = new User(id, name, password, postIds);
                 users.Add(user);
             }
@@ -171,7 +181,7 @@
                 lines.Add(line);
             }
 
-            WriteLines(config["reply"], lines.ToArray());
+            WriteLines(config["replies"], lines.ToArray());
         }
 
         private static void EnsureConfigFile(string configPath)
