@@ -72,12 +72,14 @@
 
         public void ReadPassword()
         {
-            throw new System.NotImplementedException();
+            this.Password = ForumViewEngine.ReadRow();
+            ForumViewEngine.HideCursor();
         }
 
         public void ReadUsername()
         {
-            throw new System.NotImplementedException();
+            this.Username = ForumViewEngine.ReadRow();
+            ForumViewEngine.HideCursor();
         }
 
         public void ResetSignUp()

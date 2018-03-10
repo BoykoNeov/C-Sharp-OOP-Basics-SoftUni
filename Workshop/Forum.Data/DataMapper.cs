@@ -11,7 +11,7 @@
         private const string CONFIG_PATH = "config.ini";
         private const string DEFAULT_CONFIG = "users=users.csv\r\ncategories=categories.csv\r\nposts=posts.csv\r\nreplies=replies.csv";
 
-        private static readonly Dictionary<string, string> config;
+        private static Dictionary<string, string> config;
 
         static DataMapper()
         {
@@ -21,6 +21,11 @@
 
         public static List<Category> LoadCategories()
         {
+            if (!config.ContainsKey("categories"))
+            {
+                config.Add("categories", "categories.csv");
+            }
+
             List<Category> categories = new List<Category>();
             string[] dataLines = ReadLines(config["categories"]);
 
@@ -53,6 +58,11 @@
 
         public static List<Post> LoadPosts()
         {
+            if (!config.ContainsKey("posts"))
+            {
+                config.Add("posts", "posts.csv");
+            }
+
             List<Post> posts = new List<Post>();
             string[] dataLines = ReadLines(config["posts"]);
 
@@ -89,6 +99,12 @@
         public static List<User> ListUsers()
         {
             List<User> users = new List<User>();
+
+            if (!config.ContainsKey("users"))
+            {
+                config.Add("users", "users.csv");
+            }
+
             string[] dataLines = ReadLines(config["users"]);
 
             foreach (string line in dataLines)
@@ -111,7 +127,7 @@
 
             foreach (var user in users)
             {
-                const string USER_FORMAT = "{0};{1};{2},{3},{4}";
+                const string USER_FORMAT = "{0};{1};{2},{3}";
                 string line = string.Format(USER_FORMAT, user.Id, user.Name, user.Password, string.Join(",", user.PostIds));
                 lines.Add(line);
             }
@@ -122,6 +138,11 @@
 
         public static List<Reply> LoadReplies()
         {
+            if (!config.ContainsKey("replies"))
+            {
+                config.Add("replies", "replies.csv");
+            }
+
             List<Reply> replies = new List<Reply>();
             string[] dataLines = ReadLines(config["replies"]);
 
@@ -163,7 +184,7 @@
 
         private static void EnsureFile(string path)
         {
-            if (File.Exists(path))
+            if (!File.Exists(path))
             {
                 File.Create(path).Close();
             }

@@ -16,7 +16,6 @@
         {
 			this.forumViewer = new ForumViewEngine();
 			this.controllers = InitializeControllers();
-
 			this.menuController = new MenuController(this.controllers, forumViewer);
         }
 
