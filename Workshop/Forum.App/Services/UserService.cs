@@ -47,5 +47,12 @@
 
             return SignUpStatus.UsernameTakenError;
         }
+
+        internal static User GetUserById(int userId)
+        {
+            ForumData forumData = new ForumData();
+            User user = forumData.Users.Find(u => u.Id == userId);
+            return user;
+        }
     }
 }

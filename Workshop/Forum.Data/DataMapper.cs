@@ -90,6 +90,7 @@
             {
                 const string POST_FORMAT = "{0};{1};{2},{3},{4},{5}";
                 string line = string.Format(POST_FORMAT, post.Id, post.Title, post.Content, post.CategoryId, post.AuthorId, string.Join(",", post.ReplyIds));
+                line = line.TrimEnd(',');
                 lines.Add(line);
             }
 
