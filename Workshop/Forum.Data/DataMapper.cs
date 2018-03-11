@@ -68,13 +68,22 @@
 
             foreach (string line in dataLines)
             {
+                // 1;bbbb;bbbbb,1,1
+
                 string[] args = line.Split(";", System.StringSplitOptions.RemoveEmptyEntries);
                 int id = int.Parse(args[0]);
                 string title = args[1];
                 string content = args[2];
                 int categoryId = int.Parse(args[3]);
                 int authorId = int.Parse(args[4]);
-                int[] replyIds = args[5].Split(',', System.StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+
+                List<int> replyIds = new List<int>();
+
+                if (args.Length > 5)
+                {
+                    replyIds = args[5].Split(',', System.StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+                }
+
                 Post post = new Post(id, title, content, categoryId, authorId, replyIds);
                 posts.Add(post);
             }
@@ -88,7 +97,7 @@
 
             foreach (var post in posts)
             {
-                const string POST_FORMAT = "{0};{1};{2},{3},{4},{5}";
+                const string POST_FORMAT = "{0};{1};{2};{3};{4};{5}";
                 string line = string.Format(POST_FORMAT, post.Id, post.Title, post.Content, post.CategoryId, post.AuthorId, string.Join(",", post.ReplyIds));
                 line = line.TrimEnd(',');
                 lines.Add(line);

@@ -1,5 +1,6 @@
 ﻿namespace Forum.App.Services
 {
+    using System;
     using System.Linq;
     using Forum.Data;
     using Forum.Models;
@@ -52,6 +53,13 @@
         {
             ForumData forumData = new ForumData();
             User user = forumData.Users.Find(u => u.Id == userId);
+            return user;
+        }
+
+        internal static User GetUserByName(string author)
+        {
+            ForumData forumData = new ForumData();
+            User user = forumData.Users.Find(u => u.Name == author);
             return user;
         }
     }

@@ -6,6 +6,7 @@
     using Forum.Models;
     using Forum.App.UserInterface.ViewModels;
     using Forum.App.Services;
+    using System;
 
     public static class PostService
     {
@@ -74,20 +75,36 @@
 
             Category category = EnsureCategory(postView, forumData);
             int postId = forumData.Posts.Any() ? forumData.Posts.Last().Id + 1 : 1;
-            var author = UserService.GetUserByAuthor(postView.Author);
-            var authorId = author.Id;
+            User author = UserService.GetUserByName(postView.Author);
+            int authorId = author.Id;
             string content = string.Join(string.Empty, postView.Content);
 
             var post = new Post(postId, postView.Title, content, category.Id, authorId, new List<int>());
 
             forumData.Posts.Add(post);
             author.PostIds.Add(post.Id);
-            category.Posts.Add(post.Id);
+            category.PostIds.Add(post.Id);
             forumData.SaveChanges();
 
             postView.PostId = postId;
 
             return true;
+        }
+
+        private static Category EnsureCategory(PostViewModel postView, ForumData forumData)
+        {
+            string categoryName = postView.Category;
+            Category category = forumData.Categories.FirstOrDefault(c => c.Name == categoryName);
+            
+            if (category == null)
+            {
+                List<Category> categories = forumData.Categories;
+                int categoryId = categories.Any() ? categories.Last().Id + 1 : 1;
+                category = new Category(categoryId, categoryName, new List<int>());
+                forumData.Categories.Add(category);
+            }
+
+            return category;
         }
     }
 }

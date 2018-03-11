@@ -1,13 +1,11 @@
-﻿using System;
-using System.Linq;
-using Forum.App.UserInterface;
-using Forum.App.UserInterface.Input;
-using Forum.App.UserInterface.ViewModels;
-
-namespace Forum.App.Controllers
+﻿namespace Forum.App.Controllers
 {
+    using System.Linq;
     using Forum.App.Controllers.Contracts;
+    using Forum.App.UserInterface;
     using Forum.App.UserInterface.Contracts;
+    using Forum.App.UserInterface.Input;
+    using Forum.App.UserInterface.ViewModels;
     using ForumSystem.Services;
 
     public class AddPostController : IController
@@ -37,13 +35,16 @@ namespace Forum.App.Controllers
                 case Command.AddTitle:
                     ReadTitle();
                     return MenuState.AddPost;
+
                 case Command.AddCategory:
                     ReadCategory();
                     return MenuState.AddPost;
+
                 case Command.Write:
                     TextArea.Write();
                     Post.Content = TextArea.Lines.ToList();
                     return MenuState.AddPost;
+
                 case Command.Post:
                     bool validPost = PostService.TrySavePost(Post);
 
@@ -52,8 +53,10 @@ namespace Forum.App.Controllers
                         Error = true;
                         return MenuState.Rerender;
                     }
+
                     return MenuState.PostAdded;
             }
+
             throw new InvalidCommandException();
         }
 
