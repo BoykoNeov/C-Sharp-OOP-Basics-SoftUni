@@ -53,6 +53,34 @@
             return posts;
         }
 
+        internal static bool TryAddReply(int postId, ReplyViewModel replyViewModel)
+        {
+            ForumData forumData = new ForumData();
+
+            bool emptyReply = !replyViewModel.Content.Any();
+
+            if (emptyReply)
+            {
+                return false;
+            }
+            else
+            {
+                int replyId = forumData.Replies.Any() ? forumData.Replies.Last().Id + 1 : 1;
+
+                string content = string.Join(string.Empty, replyViewModel.Content);
+                int authorId = UserService.GetUserByName(replyViewModel.Author).Id;
+
+                Reply reply = new Reply(replyId, content, authorId, postId);
+                Post post = forumData.Posts.FirstOrDefault(p => p.Id == postId);
+
+                forumData.Replies.Add(reply);
+                post.ReplyIds.Add(replyId);
+                forumData.SaveChanges();
+
+                return true;
+            }
+        }
+
         internal static string[] GetAllCategoryNames()
         {
             ForumData forumData = new ForumData();

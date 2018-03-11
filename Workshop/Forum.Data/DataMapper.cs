@@ -186,7 +186,7 @@
 
             foreach (var reply in replies)
             {
-                const string REPLY_FORMAT = "{0};{1};{2},{3}";
+                const string REPLY_FORMAT = "{0};{1};{2};{3}";
                 string line = string.Format(REPLY_FORMAT, reply.Id, reply.Content, reply.AutorId, reply.PostId);
                 lines.Add(line);
             }
