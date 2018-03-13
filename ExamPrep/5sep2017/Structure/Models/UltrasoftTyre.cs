@@ -46,6 +46,11 @@
             }
         }
     }
+
+    public override void ReduceDegradation()
+    {
+        this.Degradation -= this.Hardness + this.Grip;
+    }
 }
 
 //Because it’s ultra-soft this type of tyre has an additional property:

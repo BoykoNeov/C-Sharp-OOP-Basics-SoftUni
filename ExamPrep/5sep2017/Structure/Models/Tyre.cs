@@ -28,6 +28,11 @@
 
         }
     }
+
+    public virtual void ReduceDegradation()
+    {
+        this.Degradation -= this.Hardness;
+    }
 }
 
 //Every type of tyre has different hardness of the compound.It also has a degradation level, which is its lifetime:

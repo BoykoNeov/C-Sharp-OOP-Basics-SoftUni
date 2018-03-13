@@ -36,6 +36,11 @@ public class Car
             }
         }
     }
+
+    public void Refuel(double givenFuel)
+    {
+        this.FuelAmount += givenFuel; 
+    }
 }
 
 //Each car should keep its horsepower(Hp), fuel amount and the type of tyres fit at the moment
