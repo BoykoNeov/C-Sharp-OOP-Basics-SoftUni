@@ -4,17 +4,11 @@ public abstract class Driver
 {
     private Car car;
 
-    //protected Driver(string name, double totalTime, Car car)
-    //{
-    //    this.Name = name;
-    //    this.TotalTime = totalTime;
-    //    this.Car = car;
-    //}
-
     protected Driver(string name, Car car)
     {
         this.Name = name;
         this.Car = car;
+        this.FailureReason = null;
     }
 
     public Car Car
@@ -36,6 +30,7 @@ public abstract class Driver
     public double TotalTime { get; set; }
     public virtual double FuelConsumptionPerKm { get; protected set; }
     public virtual double Speed => (this.Car.Hp + this.Car.Tyre.Degradation) / this.Car.FuelAmount;
+    internal string FailureReason { get; set; }
 }
 
 //Drivers

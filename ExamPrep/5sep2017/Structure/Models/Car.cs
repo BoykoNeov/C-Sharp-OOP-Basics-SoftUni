@@ -28,7 +28,7 @@ public class Car
             }
             else if(value <= 0)
             {
-                throw new ArgumentException("No fuel");
+                throw new ArgumentException("Out of fuel");
             }
             else
             {

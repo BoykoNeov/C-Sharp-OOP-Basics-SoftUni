@@ -47,7 +47,6 @@ public class DriverFactory
             return null;
         }
         
-
         // type – a string, equal to either “Aggressive“ or “Endurance“
         // name – a string
         // hp – an integer
