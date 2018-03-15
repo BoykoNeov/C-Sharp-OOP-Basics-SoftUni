@@ -41,6 +41,16 @@ public class Car
     {
         this.FuelAmount += givenFuel; 
     }
+
+    public void BurnFuel(double fuelToBurn)
+    {
+        this.FuelAmount -= fuelToBurn;
+    }
+
+    public virtual void ReplaceTyre(Tyre newTyre)
+    {
+        this.Tyre = newTyre;
+    }
 }
 
 //Each car should keep its horsepower(Hp), fuel amount and the type of tyres fit at the moment

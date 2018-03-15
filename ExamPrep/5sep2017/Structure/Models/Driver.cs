@@ -9,6 +9,7 @@ public abstract class Driver
         this.Name = name;
         this.Car = car;
         this.FailureReason = null;
+        this.ParticipatedInOvertakingInCurrentRound = false;
     }
 
     public Car Car
@@ -31,6 +32,7 @@ public abstract class Driver
     public virtual double FuelConsumptionPerKm { get; protected set; }
     public virtual double Speed => (this.Car.Hp + this.Car.Tyre.Degradation) / this.Car.FuelAmount;
     internal string FailureReason { get; set; }
+    internal bool ParticipatedInOvertakingInCurrentRound { get; set; }
 }
 
 //Drivers
