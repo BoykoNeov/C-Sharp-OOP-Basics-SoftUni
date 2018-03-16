@@ -90,7 +90,6 @@ public class RaceTower
                     driver.TotalTime += lapTimeAddition;
                     driver.Car.BurnFuel(driver.FuelConsumptionPerKm * TrackLength);
                     driver.Car.Tyre.ReduceDegradation();
-                    driver.ParticipatedInOvertakingInCurrentRound = false;
                 }
                 catch (Exception ex)
                 {
@@ -116,7 +115,7 @@ public class RaceTower
         {
             Driver firstDriver = sortedDrivers[0];
 
-            if (firstDriver.ParticipatedInOvertakingInCurrentRound)
+            if (!string.IsNullOrWhiteSpace(firstDriver.FailureReason))
             {
                 continue;
             }
@@ -128,7 +127,6 @@ public class RaceTower
                 if (this.Weather == "Foggy")
                 {
                     firstDriver.FailureReason = "Crashed";
-                    firstDriver.ParticipatedInOvertakingInCurrentRound = true;
                     FailedDrivers.Add(firstDriver);
                     continue;
                 }
@@ -139,20 +137,17 @@ public class RaceTower
                 if (this.Weather == "Rainy")
                 {
                     firstDriver.FailureReason = "Crashed";
-                    firstDriver.ParticipatedInOvertakingInCurrentRound = true;
                     FailedDrivers.Add(firstDriver);
                     continue;
                 }
             }
 
-            if (firstDriver.TotalTime - secondDriver.TotalTime <= 3)
+            if (Math.Abs(firstDriver.TotalTime - secondDriver.TotalTime) <= 3)
             {
                 if (firstDriver.GetType() == typeof(AggressiveDriver) && firstDriver.Car.Tyre.GetType() == typeof(UltrasoftTyre))
                 {
                         firstDriver.TotalTime -= 3;
                         secondDriver.TotalTime += 3;
-                        firstDriver.ParticipatedInOvertakingInCurrentRound = true;
-                        secondDriver.ParticipatedInOvertakingInCurrentRound = true;
                         overtakingSb.AppendFormat($"{firstDriver.Name} has overtaken {secondDriver.Name} on lap {this.CurrentLap}");
                         continue;
                 }
@@ -161,19 +156,15 @@ public class RaceTower
                 {
                         firstDriver.TotalTime -= 3;
                         secondDriver.TotalTime += 3;
-                        firstDriver.ParticipatedInOvertakingInCurrentRound = true;
-                        secondDriver.ParticipatedInOvertakingInCurrentRound = true;
                         overtakingSb.AppendFormat($"{firstDriver.Name} has overtaken {secondDriver.Name} on lap {this.CurrentLap}");
                         continue;
                 }
             }
 
-            if (firstDriver.TotalTime - secondDriver.TotalTime <= 2)
+            if (Math.Abs(firstDriver.TotalTime - secondDriver.TotalTime) <= 2)
             {
                 firstDriver.TotalTime -= 2;
                 secondDriver.TotalTime += 2;
-                firstDriver.ParticipatedInOvertakingInCurrentRound = true;
-                secondDriver.ParticipatedInOvertakingInCurrentRound = true;
                 overtakingSb.AppendFormat($"{firstDriver.Name} has overtaken {secondDriver.Name} on lap {this.CurrentLap}");
             }
         }

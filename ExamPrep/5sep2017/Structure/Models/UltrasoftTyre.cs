@@ -38,7 +38,7 @@
         {
             if (value < 30)
             {
-                throw new System.Exception("Blow up");
+                throw new System.Exception("Blown Tyre");
             }
             else
             {
