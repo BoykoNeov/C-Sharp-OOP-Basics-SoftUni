@@ -5,66 +5,17 @@ using System.Text;
 
 public class DraftManager
 {
-    private string mode;
+    private string operationMode;
     private List<Harvester> harvesters;
     private List<Provider> providers;
     private double totalEnergyStored;
     private double totalOreMined;
 
-    public double TotalOreMined
-    {
-        get { return totalOreMined; }
-        set { totalOreMined = value; }
-    }
-
-    public double TotalEnergyStored
-    {
-        get { return totalEnergyStored; }
-        set { totalEnergyStored = value; }
-    }
-
-    public List<Provider> Providers
-    {
-        get
-        {
-            return providers;
-        }
-        private set
-        {
-            providers = value;
-        }
-    }
-
-
-    public List<Harvester> Harvesters
-    {
-        get
-        {
-            return harvesters;
-        }
-        private set
-        {
-            harvesters = value;
-        }
-    }
-
-    public string OperationMode
-    {
-        get
-        {
-            return this.mode;
-        }
-        private set
-        {
-            this.mode = value;
-        }
-    }
-
     public DraftManager()
     {
-        this.OperationMode = "Full";
-        this.Harvesters = new List<Harvester>();
-        this.Providers = new List<Provider>();
+        this.operationMode = "Full";
+        this.harvesters = new List<Harvester>();
+        this.providers = new List<Provider>();
     }
 
 
@@ -98,26 +49,26 @@ public class DraftManager
 
     public string Day()
     {
-        double daysEnergy = this.Providers.Sum(p => p.EnergyOutput);
-        this.TotalEnergyStored += daysEnergy;
+        double daysEnergy = this.providers.Sum(p => p.EnergyOutput);
+        this.totalEnergyStored += daysEnergy;
 
-        double baseDaysEnergyConsumption = this.Harvesters.Sum(h => h.EnergyRequirement);
-        double baseDaysOreProduction = this.Harvesters.Sum(h => h.OreOutput);
+        double baseDaysEnergyConsumption = this.harvesters.Sum(h => h.EnergyRequirement);
+        double baseDaysOreProduction = this.harvesters.Sum(h => h.OreOutput);
 
-        if (this.OperationMode == "Energy")
+        if (this.operationMode == "Energy")
         {
             baseDaysEnergyConsumption = 0;
             baseDaysOreProduction = 0;
         }
-        else if (this.OperationMode == "Half")
+        else if (this.operationMode == "Half")
         {
             baseDaysEnergyConsumption *= 0.6;
             baseDaysOreProduction *= 0.5;
         }
 
-        if (this.TotalEnergyStored >= baseDaysEnergyConsumption)
+        if (this.totalEnergyStored >= baseDaysEnergyConsumption)
         {
-            this.TotalOreMined += baseDaysOreProduction;
+            this.totalOreMined += baseDaysOreProduction;
             this.totalEnergyStored -= baseDaysEnergyConsumption;
         }
         else
@@ -130,8 +81,8 @@ public class DraftManager
 
     public string Mode(List<string> arguments)
     {
-        this.OperationMode = arguments[0];
-        return $"Successfully changed working mode to {this.OperationMode} Mode";
+        this.operationMode = arguments[0];
+        return $"Successfully changed working mode to {this.operationMode} Mode";
     }
 
     public string Check(List<string> arguments)
@@ -154,14 +105,12 @@ public class DraftManager
             Harvester harvester = (Harvester)robot;
             return harvester.ToString();
         }
-        else
-        {
-            return "Unknown type with this id";
-        }
+
+        return $"No element found with id - {id}";
     }
 
     public string Shutdown()
     {
-        return $"System Shutdown{Environment.NewLine}Total Energy Stored: {this.TotalEnergyStored}" + Environment.NewLine + $"Total Mined Plumbus Ore: {this.TotalOreMined}";
+        return $"System Shutdown{Environment.NewLine}Total Energy Stored: {this.totalEnergyStored}" + Environment.NewLine + $"Total Mined Plumbus Ore: {this.totalOreMined}";
     }
 }
