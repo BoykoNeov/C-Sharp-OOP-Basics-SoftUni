@@ -15,9 +15,9 @@
         }
         protected set
         {
-            if (value > 10000 || value < 0)
+            if (value >= 10000 || value < 0)
             {
-                throw new System.ArgumentException();
+                throw new System.ArgumentException("EnergyOutput");
             }
 
             energyOutput = value;

@@ -2,5 +2,6 @@
 {
     public SolarProvider(string id, double energyOutput) : base(id, energyOutput)
     {
+        this.Type = "Solar";
     }
 }

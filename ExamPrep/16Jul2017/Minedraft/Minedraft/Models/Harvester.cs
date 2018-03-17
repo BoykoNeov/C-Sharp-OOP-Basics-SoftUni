@@ -22,7 +22,7 @@ public abstract class Harvester : Robot
         {
             if (value < 0 || value > 20000)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("EnergyRequirement");
             }
 
             energyRequirement = value;
@@ -40,7 +40,7 @@ public abstract class Harvester : Robot
         {
             if (value < 0)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("OreOutput");
             }
 
             this.oreOutput = value;

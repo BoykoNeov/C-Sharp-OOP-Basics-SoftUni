@@ -2,7 +2,8 @@
 {
     public HammerHarvester(string id, double oreOutput, double energyRequirement) : base(id, oreOutput, energyRequirement)
     {
-        this.EnergyRequirement *= 3;
-        this.OreOutput *= 2;
+        this.EnergyRequirement *= 2;
+        this.OreOutput *= 3;
+        this.Type = "Hammer";
     }
 }

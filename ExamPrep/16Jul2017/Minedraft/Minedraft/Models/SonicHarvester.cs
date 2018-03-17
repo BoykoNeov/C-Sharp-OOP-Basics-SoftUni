@@ -8,6 +8,7 @@ public class SonicHarvester : Harvester
     {
         this.SonicFactor = sonicFactor;
         this.EnergyRequirement /= this.SonicFactor;
+        this.Type = "Sonic";
     }
 
     public int SonicFactor
@@ -20,7 +21,7 @@ public class SonicHarvester : Harvester
         {
             if (value < 0)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("SonicFactor");
             }
 
             this.sonicFactor = value;

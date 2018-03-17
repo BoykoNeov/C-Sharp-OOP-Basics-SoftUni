@@ -2,5 +2,6 @@
 {
     public PressureProvider(string id, double energyOutput) : base(id, energyOutput * 1.5)
     {
+        this.Type = "Pressure";
     }
 }
