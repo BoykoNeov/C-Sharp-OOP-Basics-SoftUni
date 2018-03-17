@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 public class DraftManager
 {
@@ -95,18 +94,10 @@ public class DraftManager
         {
             return $"No element found with id - {id}";
         }
-        else if (robot.Type == "Pressure" || robot.Type == "Solar")
+        else
         {
-            Provider provider = (Provider)robot;
-            return provider.ToString();
+            return robot.ToString();
         }
-        else if (robot.Type == "Hammer" || robot.Type == "Sonic")
-        {
-            Harvester harvester = (Harvester)robot;
-            return harvester.ToString();
-        }
-
-        return $"No element found with id - {id}";
     }
 
     public string Shutdown()
