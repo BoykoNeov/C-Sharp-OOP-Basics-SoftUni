@@ -46,4 +46,10 @@ public abstract class Harvester : Robot
             this.oreOutput = value;
         }
     }
+
+    public override string ToString()
+    {
+        string result = $"{this.Type} Harvester - {this.Id}" + Environment.NewLine + $"Ore Output: {this.OreOutput}{Environment.NewLine}Energy Requirement: {this.EnergyRequirement}";
+        return result;
+    }
 }

@@ -147,12 +147,12 @@ public class DraftManager
         else if (robot.Type == "Pressure" || robot.Type == "Solar")
         {
             Provider provider = (Provider)robot;
-            return $"{provider.Type} Provider - {provider.Id}{Environment.NewLine}Energy Output: {provider.EnergyOutput}";
+            return provider.ToString();
         }
         else if (robot.Type == "Hammer" || robot.Type == "Sonic")
         {
             Harvester harvester = (Harvester)robot;
-            return $"{harvester.Type} Harvester - {harvester.Id}{Environment.NewLine}Ore Output: {harvester.OreOutput}{Environment.NewLine}Energy Requirement: {harvester.EnergyRequirement}";
+            return harvester.ToString();
         }
         else
         {

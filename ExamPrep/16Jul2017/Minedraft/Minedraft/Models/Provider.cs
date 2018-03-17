@@ -1,4 +1,6 @@
-﻿public abstract class Provider : Robot
+﻿using System;
+
+public abstract class Provider : Robot
 {
     private double energyOutput;
 
@@ -22,5 +24,11 @@
 
             energyOutput = value;
         }
+    }
+
+    public override string ToString()
+    {
+        string result = $"{this.Type} Provider - {this.Id}" + Environment.NewLine + $"Energy Output: {this.EnergyOutput}";
+        return result;
     }
 }
